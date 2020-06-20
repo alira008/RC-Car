@@ -2,3 +2,11 @@ RC-Car-Full/build/
 RC-Car-Full/test/
 RC-Car-Full/header/
 RC-Car-Full/turnin/
+Component-Tests/DCMotorTest/build/
+Component-Tests/DCMotorTest/test/
+Component-Tests/DCMotorTest/header/
+Component-Tests/DCMotorTest/turnin/
+Component-Tests/ServoMotorTest/build/
+Component-Tests/ServoMotorTest/test/
+Component-Tests/ServoMotorTest/header/
+Component-Tests/ServoMotorTest/turnin/
