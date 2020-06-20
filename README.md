@@ -8,7 +8,7 @@
 ### To-Do's
 
 - [ ] Test all Components
-	- [ ] DC Motor
+	- [x] DC Motor
 	- [ ] Servo Motor
 	- [ ] Bluetooth UART Receiver
 	- [ ] Bluetooth UART Sender
