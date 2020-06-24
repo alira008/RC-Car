@@ -10,3 +10,7 @@ Component-Tests/ServoMotorTest/build/
 Component-Tests/ServoMotorTest/test/
 Component-Tests/ServoMotorTest/header/
 Component-Tests/ServoMotorTest/turnin/
+Component-Tests/DCMotorPWM/build/
+Component-Tests/DCMotorPWM/test/
+Component-Tests/DCMotorPWM/header/
+Component-Tests/DCMotorPWM/turnin/
