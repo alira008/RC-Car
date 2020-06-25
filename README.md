@@ -9,10 +9,10 @@
 
 - [ ] Test all Components
 	- [x] DC Motor
-	- [ ] Bluetooth USART Receiver
-	- [ ] Bluetooth USART Sender
 	- [X] DC Motor with PWM and Joystick
 	- [x] Servo Motor with PWM and Joystick
+	- [ ] Bluetooth USART Receiver
+	- [ ] Bluetooth USART Sender
 - [ ] Implement components to RC-Car microcontroller
 - [ ] Implement components to RC-Car Controller microcontroller
 
