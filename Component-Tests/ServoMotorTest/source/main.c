@@ -17,7 +17,7 @@ void ServoPWM_init() {
     // Fast PWM mode
     DDRB |= (1 << PB6);     // Set OC3A to output
     //  Servo motor must receive constant 50 MHz
-    //  target frequency (50 Mhz) = 8 Mhz / (prescaler * (1 + TOP))
+    //  target frequency (50 Mhz) = 1 Mhz / (prescaler * (1 + TOP))
     TCNT3 = 0;
     ICR3 = 2499;    // This is our TOP value
     TCCR3A = (1 << COM3A1) | (1 << WGM31);
