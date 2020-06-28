@@ -6,6 +6,8 @@
 #ifndef USART_ATMEGA1284_H
 #define USART_ATMEGA1284_H
 
+#include <avr/io.h>
+
 // USART Setup Values
 #define F_CPU 8000000UL // Assume uC operates at 8MHz
 #define BAUD_RATE 9600

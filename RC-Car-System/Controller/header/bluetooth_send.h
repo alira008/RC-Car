@@ -1,15 +1,99 @@
 #ifndef BLUETOOTH_SEND_H
 #define BLUETOOTH_SEND_H
 
-unsigned char transmitValue;
+#include <avr/io.h>
+#include "usart_ATmega1284.h"
 
-//========================= USART State Machine =============================
+//========================= How we are sending data =======================
+/*
+                | bit8 | bit7 | bit6 | bit5 | bit4 | bit3 | bit2 | bit1 | bit0 |
+                | tbd  | tbd  | tbd  | -- Servo Motor --- | ---- DC Motor ---- |
+                                     | 8 different angles |   3 speeds  | direction |
+    variables:                       |      LRAngles      |   FRSpeed   | FRDirection |
+*/
+//========================= Shared Variables ==============================
 
-int TransmitDataTick(int state);
+// Value we want to send
+unsigned char transmitValue = 0x00;
+
+// These values will be set in joystick_io.h
+extern unsigned char FRDirection;
+extern unsigned char FRSpeed;
+extern unsigned char LRAngles;
+//=========================================================================
+
+void start_usart(unsigned char num) {
+    initUSART(num);
+}
+
+
+//========================= USART State Machine ===========================
+
+enum TransmitData_states {TransmitDataWait, TransmitDataWrite};
+
+int TransmitDataTick(int state) {
+    //  State Transitions
+    switch(state) {
+        case TransmitDataWait:
+            if(USART_IsSendReady(0)) {
+                state = TransmitDataWrite;
+            } else {
+                state = TransmitDataWait;
+            }
+            break;
+
+        case TransmitDataWrite:
+            if(USART_HasTransmitted(0)) {
+                state = TransmitDataWait;
+                USART_Flush(0);
+            } else {
+                state = TransmitDataWrite;
+            }
+            break;
+
+        default:
+            state = TransmitDataWait;
+            break;
+    }
+
+    //  State Actions
+    switch(state) {
+        case TransmitDataWait:
+            break;
+
+        case TransmitDataWrite:
+            USART_Send(transmitValue, 0);
+            break;
+    }
+
+    return state;
+}
 
 //======================= Combine Data State Machine =========================
 
-int CombineDataTick(int state);
+enum CombineData_states {CombineDataGo};
+
+int CombineDataTick(int state) {
+    //  State Transitions
+    switch(state) {
+        case CombineDataGo:
+            state = CombineDataGo;
+            break;
+
+        default:
+            state = CombineDataGo;
+            break;
+    }
+
+    //  State Actions
+    switch(state) {
+        case CombineDataGo:
+            transmitValue = LRAngles << 3 | FRSpeed << 1 | FRDirection;
+            break;
+    }
+
+    return state;
+}
 
 //============================================================================
 
