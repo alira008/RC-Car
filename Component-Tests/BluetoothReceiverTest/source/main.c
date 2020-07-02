@@ -205,11 +205,11 @@ int OutputLEDsTick(int state) {
     //  State Actions
     switch(state) {
         case OutputLEDsGo:
-            if(LEDmode == 0x00){
-                PORTC = 0x00;
-            } else {
-                PORTC = fourLEDsOut;
-            }
+            // if(LEDmode == 0x00){
+            //     PORTC = 0x00;
+            // } else {
+                PORTC = receivedValue;
+            //}
             break;
     }
 
@@ -221,11 +221,11 @@ int OutputLEDsTick(int state) {
 int main(void) {
     DDRC = 0xFF; PORTC = 0x00;  //  All pins are output
 
-    unsigned long int BluetoothReceiverTick_calc = 1;
+    unsigned long int BluetoothReceiverTick_calc = 100;
     unsigned long int ParseDataTick_calc = 1;
     unsigned long int LEDMode1Tick_calc = 500;
     unsigned long int LEDMode2Tick_calc = 500;
-    unsigned long int OutputLEDsTick_calc = 500;
+    unsigned long int OutputLEDsTick_calc = 1;
 
     // Calculate GCD
     unsigned long int tmpGCD = findGCD(BluetoothReceiverTick_calc, ParseDataTick_calc);
