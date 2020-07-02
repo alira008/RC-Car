@@ -1,33 +1,28 @@
-#ifndef BLUETOOTH_SEND_H
-#define BLUETOOTH_SEND_H
-
 #include <avr/io.h>
 #include "usart_ATmega1284.h"
+#include "bluetooth_send.h"
+#include "joystick_IO.h"
 
-//========================= How we are sending data ========================================================
+//========================= How we are sending data =======================
 /*
                 | bit8 | bit7 | bit6 | bit5 | bit4 | bit3 | bit2 | bit1 | bit0 |
                 | tbd  | tbd  | tbd  | -- Servo Motor --- | ---- DC Motor ---- |
                                      | 8 different angles |   3 speeds  | direction |
     variables:                       |      LRAngles      |   FRSpeed   | FRDirection |
 */
-//========================= Shared Variables ===============================================================
+//========================= Shared Variables ==============================
 
 // Value we want to send
 unsigned char transmitValue = 0x00;
-
-// These values will be set in joystick_io.h
-extern unsigned char FRDirection;
-extern unsigned char FRSpeed;
-extern unsigned char LRAngles;
-
-//==========================================================================================================
+unsigned char FRDirection, FRSpeed, LRAngles;
+//=========================================================================
 
 void start_usart(unsigned char num) {
     initUSART(num);
 }
 
-//========================= USART State Machine ============================================================
+
+//========================= USART State Machine ===========================
 
 enum TransmitData_states {TransmitDataWait, TransmitDataWrite};
 
@@ -96,5 +91,3 @@ int CombineDataTick(int state) {
 }
 
 //============================================================================
-
-#endif
