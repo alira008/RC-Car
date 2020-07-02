@@ -13,8 +13,8 @@
 	- [X] Servo Motor with PWM and Joystick
 	- [X] Bluetooth USART Receiver
 	- [X] Bluetooth USART Sender
-- [ ] Implement components to RC-Car microcontroller
-- [ ] Implement components to RC-Car Controller microcontroller
+- [X] Implement components to RC-Car microcontroller
+- [X] Implement components to RC-Car Controller microcontroller
 
 ### Possible future additions to RC-Car
 
